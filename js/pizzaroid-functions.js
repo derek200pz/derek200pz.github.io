@@ -14,7 +14,27 @@ export const bullets = [];
 export const asterooms = [];
 export const screenText = [];
 
+export const pizzaSprite = createPizza();
+
 export const controls = { a: false, d: false, w: false, space: false };
+
+function createPizza() {
+  const pza = document.createElement("img");
+  pza.src = "img/pizza.svg";
+  pza.alt = "Pizza Slice";
+  document.body.appendChild(pza);
+  return {
+    dom: pza,
+    w: 30,
+    h: 30,
+    rot: 0,
+    delRot: 0,
+    x: viewWidth / 2,
+    delX: 0,
+    y: viewHeight / 2,
+    delY: 0,
+  };
+}
 
 export function vectorToAngle(x, y) {
   if (y == 0) {
@@ -108,7 +128,7 @@ export function reflectOutOfBounds(sprite) {
 }
 
 export function removeOutOfBoundsBullets() {
-  for (i = 0; i < bullets.length; i++) {
+  for (let i = 0; i < bullets.length; i++) {
     if (
       bullets[i].x < 0 ||
       bullets[i].y < 0 ||
@@ -132,7 +152,7 @@ export function updateDomPosition(sprite) {
 export function spawnPropelParticle() {
   const chs = document.createElement("img");
 
-  dice = 2 * Math.random();
+  const dice = 2 * Math.random();
   if (dice < 1) {
     chs.src = "img/propellant_y.svg";
   } else {
@@ -211,7 +231,7 @@ export function spawnChildAsterooms(parentAsteroom) {
 }
 
 export function randomEdgeCoords() {
-  dice = 4 * Math.random();
+  const dice = 4 * Math.random();
   if (dice < 1) {
     return { x: 0, y: Math.random() * viewHeight };
   } else if (dice < 2) {
@@ -224,14 +244,14 @@ export function randomEdgeCoords() {
 }
 
 export function populateAsterooms(count) {
-  for (i = 0; i < count; i++) {
+  for (let i = 0; i < count; i++) {
     const astm = document.createElement("img");
     astm.src = "img/asteroom.svg";
     astm.alt = "asteroom";
     astm.style.zIndex = -1;
     document.body.appendChild(astm);
-    randomEdge = randomEdgeCoords();
-    randomAngle = Math.random() * 2 * Math.PI;
+    const randomEdge = randomEdgeCoords();
+    const randomAngle = Math.random() * 2 * Math.PI;
     asterooms.push({
       dom: astm,
       w: 100,
@@ -266,7 +286,7 @@ export function placeExplosion(sprite1, sprite2) {
 }
 
 export function removeStationaryPropelParticles() {
-  for (i = 0; i < propelParticles.length; i++) {
+  for (let i = 0; i < propelParticles.length; i++) {
     if (propelParticles[i].delX == 0 && propelParticles[i].delY == 0) {
       propelParticles[i].dom.remove();
       propelParticles.splice(i, 1);

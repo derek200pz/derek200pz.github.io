@@ -15,23 +15,34 @@
     </style>
   </header>
   <body>
-    <img id="pizza" src="img/pizza.svg" alt="pizza" />
+    <!-- Filled with SVGs by JS modules -->
   </body>
   <script type="module">
-    import "./js/pizzaroid-functions.js";
-
-    const pizza = document.getElementById("pizza");
-    const pizzaSprite = {
-      dom: pizza,
-      w: 20,
-      h: 30,
-      rot: 0,
-      delRot: 0,
-      x: viewWidth / 2,
-      delX: 0,
-      y: viewHeight / 2,
-      delY: 0,
-    };
+    import {
+      viewWidth,
+      viewHeight,
+      populateAsterooms,
+      applyControls,
+      applyFriction,
+      removeStationaryPropelParticles,
+      applyInertia,
+      reflectOutOfBounds,
+      spritesTouching,
+      spawnChildAsterooms,
+      placeExplosion,
+      displayText,
+      removeOutOfBoundsBullets,
+      updateDomPosition,
+      controls,
+      FRICTION,
+      propelParticles,
+      bullets,
+      asterooms,
+      screenText,
+      spawnBullet,
+      pizzaSprite,
+      CHSFRICTION,
+    } from "./js/pizzaroid-functions.js";
 
     populateAsterooms(10);
     function mainLoop() {
@@ -40,7 +51,7 @@
 
       //apply friction to the pizza and exhaust particles
       applyFriction(pizzaSprite, FRICTION);
-      for (i = 0; i < propelParticles.length; i++) {
+      for (let i = 0; i < propelParticles.length; i++) {
         applyFriction(propelParticles[i], CHSFRICTION);
       }
 
@@ -49,37 +60,38 @@
 
       //add the velocity to the position and rotation each increment
       applyInertia(pizzaSprite);
-      for (i = 0; i < propelParticles.length; i++) {
+      for (let i = 0; i < propelParticles.length; i++) {
         applyInertia(propelParticles[i]);
       }
-      for (i = 0; i < asterooms.length; i++) {
+      for (let i = 0; i < asterooms.length; i++) {
         applyInertia(asterooms[i]);
       }
-      for (i = 0; i < bullets.length; i++) {
+      for (let i = 0; i < bullets.length; i++) {
         applyInertia(bullets[i]);
       }
 
       //if the sprite goes out of bounds, reflect it back in on the opposite side
       reflectOutOfBounds(pizzaSprite);
-      for (i = 0; i < asterooms.length; i++) {
+      for (let i = 0; i < asterooms.length; i++) {
         reflectOutOfBounds(asterooms[i]);
       }
 
       //if a bullet collides with an asteroom, break the asteroom apart and delete the bullet
-      for (i = 0; i < bullets.length; i++) {
-        for (j = 0; j < asterooms.length; j++) {
+      for (let i = 0; i < bullets.length; i++) {
+        for (let j = 0; j < asterooms.length; j++) {
           if (spritesTouching(bullets[i], asterooms[j])) {
             bullets[i].dom.remove();
             bullets.splice(i, 1);
             spawnChildAsterooms(asterooms[j]);
             asterooms[j].dom.remove();
             asterooms.splice(j, 1);
+            break
           }
         }
       }
 
       //if the ship collides with an asteroom, YOU LOSE
-      for (i = 0; i < asterooms.length; i++) {
+      for (let i = 0; i < asterooms.length; i++) {
         if (spritesTouching(pizzaSprite, asterooms[i])) {
           placeExplosion(pizzaSprite, asterooms[i]);
           clearInterval(timerId);
@@ -100,13 +112,13 @@
 
       //reposition the sprite to the updated position
       updateDomPosition(pizzaSprite);
-      for (i = 0; i < propelParticles.length; i++) {
+      for (let i = 0; i < propelParticles.length; i++) {
         updateDomPosition(propelParticles[i]);
       }
-      for (i = 0; i < asterooms.length; i++) {
+      for (let i = 0; i < asterooms.length; i++) {
         updateDomPosition(asterooms[i]);
       }
-      for (i = 0; i < bullets.length; i++) {
+      for (let i = 0; i < bullets.length; i++) {
         updateDomPosition(bullets[i]);
       }
     }
