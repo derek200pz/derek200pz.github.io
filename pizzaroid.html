@@ -42,6 +42,7 @@
       spawnBullet,
       pizzaSprite,
       CHSFRICTION,
+      steeringWheel,
     } from "./js/pizzaroid-functions.js";
 
     populateAsterooms(10);
@@ -85,7 +86,7 @@
             spawnChildAsterooms(asterooms[j]);
             asterooms[j].dom.remove();
             asterooms.splice(j, 1);
-            break
+            break;
           }
         }
       }
@@ -128,7 +129,6 @@
 
     //listen for keydown and keyup events to update "control" object
     addEventListener("keydown", (event) => {
-      console.log(event.key);
       if (event.key === "a") {
         controls.a = true;
       }

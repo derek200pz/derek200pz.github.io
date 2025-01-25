@@ -15,6 +15,7 @@ export const asterooms = [];
 export const screenText = [];
 
 export const pizzaSprite = createPizza();
+export const steeringWheel = createSteeringWheel()
 
 export const controls = { a: false, d: false, w: false, space: false };
 
@@ -176,12 +177,11 @@ export function spawnPropelParticle() {
 }
 
 export function spawnBullet() {
-  const chs = document.createElement("img");
-  chs.src = "img/bullet.svg";
-  chs.alt = "bullet";
-  document.body.appendChild(chs);
-  bullets.push({
-    dom: chs,
+  const blt = document.createElement("img");
+  blt.src = "img/bullet.svg";
+  blt.alt = "bullet";
+  const bullet = {
+    dom: blt,
     w: 10,
     h: 10,
     rot: pizzaSprite.rot,
@@ -190,7 +190,30 @@ export function spawnBullet() {
     delX: BULLETSPEED * Math.sin(pizzaSprite.rot),
     y: pizzaSprite.y,
     delY: BULLETSPEED * -Math.cos(pizzaSprite.rot),
-  });
+  };
+  updateDomPosition(bullet);
+  bullets.push(bullet);
+  document.body.appendChild(blt);
+}
+
+function createSteeringWheel() {
+  const stwh = document.createElement("img");
+  stwh.src = "img/steering_wheel.svg";
+  stwh.alt = "bullet";
+  const wheel = {
+    dom: stwh,
+    w: 100,
+    h: 100,
+    rot: pizzaSprite.rot,
+    delRot: 0,
+    x: 150,
+    delX: 0,
+    y: viewHeight - 150,
+    delY: 0,
+  };
+  updateDomPosition(wheel);
+  document.body.appendChild(stwh);
+  return wheel;
 }
 
 export function spawnChildAsterooms(parentAsteroom) {
