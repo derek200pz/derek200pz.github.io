@@ -1,15 +1,14 @@
 {
-    "homeTitle": [
-        "Just an average, everyday, ordinary adventure.",
-        "The simple life of a simple person.",
-        "If you want to read about a pretty ordinary guy, you've come to the right place.",
-        "I'm not extraordinary, I'm just extra ordinary."
-    ],
-    "homeCurrently": "Currently, I'm working as a resident assistant for the Graduate Student apartment buildings in Cougar Village apartments (at Southern Illinois University Edwardsvile). I really like the job, which is part of the reason I'm now the ONLY RA returning for my FOURTH year. (Also because most RAs graduate and leave by now...) If you're looking for a software developer with plenty of people skills, you've found him.",
-    "homeContent1": [
-        "I think Descartes was a dummy, I prefer Vim over Emacs, and I come from the tiny town of Heyworth, Illinois.",
-        "I was a 4-H member as a kid, but I managed not become a farmer. I grew up very close to Bloomington, IL, which (of course) means that I used to work at State Farm Insurance.",
-        "My favorite color is Violet, <span style=\"background-color: #a020f0; color: #fff; border-radius: 1rem\">&nbsp;#a020f0 specifically&nbsp;</span>, and my favorite type of tree is the weeping willow. I also like to read, but I seldom have the time.",
-        "I play Dungeons & Dragons, I've done Drag before, and my appendix is removed!"
-    ]
+  "homeTitle": [
+    "About Me",
+    "Curriculum Vitae",
+    "Who I Am"
+  ],
+  "homeContent1": [
+    "Central Illinois born and raised, I was a 4-H kid and a robotics club teenager. At university I studied Computer Science, Math and Physics, and was awarded a Bachelor of Computer Science. I've worked at State Farm for several years, and I am currently exploring new employment opportunities to help me expand my skill set outside the purely digital.",
+    "Central Illinois born and raised, I was a 4-H kid and a robotics club teenager. At university I studied Computer Science, Math and Physics, and was awarded a Bachelor of Computer Science. I worked at State Farm for several years, and I am currently exploring new employment opportunities to help me expand my skill set outside the purely digital.",
+    "Central Illinois born and raised, I was a 4-H kid and a robotics club teenager. In college I studied Computer Science, Math and Physics, and was awarded a Bachelor of Computer Science. I've worked at State Farm for several years, and I am currently exploring new employment opportunities to help me expand my skill set outside the purely digital.",
+    "Central Illinois born and raised, I was a 4-H kid and a robotics club teenager. In college I studied Computer Science, Math and Physics, and was awarded a Bachelor of Computer Science. I worked at State Farm for several years, and I am currently exploring new employment opportunities to help me expand my skill set outside the purely digital."
+  ],
+  "homeCurrently": "Right now, I'm pursuing other career opportunities outside the comp-sci space. I still code as a hobby, contributing regularly to this site and other projects."
 }

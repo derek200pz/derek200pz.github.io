@@ -1,190 +1,208 @@
-    body,
-    html {
-        height: 100%;
-        margin: 0;
-        -webkit-text-size-adjust: 200%;
-        background: #000;
-        color: #ccc
-    }
-    
-    #footer {
-        width: 100%;
-        font-size: 2em;
-    }
-    
-    h1 {
-        font-size: 3em;
-        margin: 1em 0;
-        color: #FF026D;
-        opacity: 0;
-        -webkit-transform: translateX(-5em);
-        transform: translateX(-5em);
-        transition: transform 1s, opacity 1s;
-        will-change: transform;
-    }
-    
-    p {
-        margin-bottom: 1em;
-        text-indent: 3em;
-        font-size: 1.3em;
-    }
-    
-    .emphasis {
-        color: #FF026D;
-        font-weight: bolder;
-        /* from stack-overflow example-code -- font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, sans-serif; */
-    }
-    /* animations on the h1 elements */
-    
-    .slide {
-        opacity: 1;
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
-    }
-    /* for the navbar */
+body,
+html {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%; /* on some smartphones, text size inflation is controlled by this property. otherwise ignored. */
+  background: #000;
+  color: #ccc;
+  /* Set the pixel base for all the REM measurements */
+  font-size: 15px;
+}
 
-    .card-body {
-        background-color: #222;
-    }
-    
-    ul.dl-nav {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 100;
-    }
-    
-    .dl-nav li {
-        float: left;
-    }
-    
-    .dl-nav li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 1em 1.5em;
-        text-decoration: none;
-    }
-    
-    .dl-nav li a:hover:not(.active) {
-        background-color: #111;
-    }
-    
-    .dl-nav .active {
-        background-color: #FF026D;
-    }
-    
-    @media only screen and (max-width: 1000px) {
-        ul.dl-nav {
-            width: 70%;
-            -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
-            min-height: 100%;
-            transition: transform 300ms;
-        }
-        ul.dl-nav li {
-            width: 100%;
-        }
-        button#menu {
-            padding: 1rem;
-            font-size: 2em;
-            background-color: #333;
-            color: #fff;
-            position: fixed;
-            z-index: 100;
-            border-radius: 0 .3em .3em 0;
-        }
-    }
-    /* for the footer */
-    
-    ul.dl-footer {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333;
-        width: 100%;
-    }
-    
-    .dl-footer li {
-        float: left;
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 1em 1.5em;
-    }
-    /* for parallax images: */
-    
-    .plain-img {
-        min-height: 100%;
-        background-image: url("../img/derek-lopez-plain.png");
-    }
-    
-    .crazy-img {
-        min-height: 100%;
-        background-image: url("../img/derek-lopez-crazy.png");
-    }
-    
-    .crazy-bg-img {
-        min-height: 10%;
-        background-image: url("../img/crazy-bg.png");
-    }
-    
-    .family-img {
-        min-height: 90%;
-        background-image: url("../img/mom-and-dad-smaller.png");
-    }
-    
-    @media all and (max-width: 700px) {
-        .plain-img {
-            background-image: url("../img/derek-lopez-plain-small.png");
-        }
-        .crazy-img {
-            background-image: url("../img/derek-lopez-crazy-small.png");
-        }
-    }
-    
-    @supports (-webkit-overflow-scrolling: touch) {
-        /* disable paralax on safari */
-        .plain-img,
-        .crazy-bg-img {
-            display: none;
-        }
-        .crazy-img {
-            background-image: url("../img/derek-lopez-crazy-small.png");
-        }
-    }
-    
-    @supports not (-webkit-overflow-scrolling: touch) {
-        /* disable paralax on safari */
-        .plain-img,
-        .crazy-img,
-        .crazy-bg-img,
-        .family-img {
-            background-attachment: fixed;
-        }
-    }
-    
-    .plain-img,
-    .crazy-img,
-    .crazy-bg-img,
-    .family-img {
-        position: relative;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    /*for the different sections of the main page*/
-    
-    .dl-sideline {
-        background-color: #222;
-    }
-    
-    .row:nth-child(odd) .dl-sideline {
-        background-color: #111;
-    }
+#footer {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-size: 2rem;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 1rem 0;
+  color: #ff026d;
+  opacity: 0;
+  -webkit-transform: translateX(-5rem);
+  transform: translateX(-5rem);
+  transition: transform 1s, opacity 1s;
+  will-change: transform;
+}
+
+p {
+  margin-bottom: 1rem;
+  text-indent: 3rem;
+  font-size: 1.3rem;
+}
+
+.emphasis {
+  color: #ff026d;
+  font-weight: bolder;
+  /* from stack-overflow example-code -- font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, sans-serif; */
+}
+/* animations on the h1 elements */
+
+.slide {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+/* for the navbar */
+
+.card-body {
+  background-color: #222;
+}
+
+ul.dl-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.dl-nav li {
+  float: left;
+}
+
+.dl-nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+}
+
+.dl-nav li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.dl-nav .active {
+  background-color: #ff026d;
+}
+
+@media only screen and (max-width: 1000px) {
+  ul.dl-nav {
+    margin: 0;
+    padding: 0;
+    width: 70%;
+    -webkit-transform: translateX(-100vw);
+    transform: translateX(-100vw);
+    min-height: 100vh;
+    transition: transform 300ms;
+  }
+  ul.dl-nav li {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  button#menu {
+    padding: 1rem;
+    font-size: 2rem;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    z-index: 100;
+    border-radius: 0 0.3rem 0.3rem 0;
+  }
+}
+/* for the footer */
+
+ul.dl-footer {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  width: 100%;
+}
+
+.dl-footer li {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 1rem 1.5rem;
+}
+/* for parallax images: */
+
+.plain-img {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-image: url("../img/derek-lopez-plain.png");
+}
+
+.crazy-img {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-image: url("../img/derek-lopez-crazy.png");
+}
+
+.crazy-bg-img {
+  margin: 0;
+  padding: 0;
+  min-height: 10vh;
+  background-image: url("../img/crazy-bg.png");
+}
+
+.family-img {
+  margin: 0;
+  padding: 0;
+  min-height: 90vh;
+  background-image: url("../img/mom-and-dad-smaller.png");
+}
+
+@media all and (max-width: 700px) {
+  .plain-img {
+    background-image: url("../img/derek-lopez-plain-small.png");
+  }
+  .crazy-img {
+    background-image: url("../img/derek-lopez-crazy-small.png");
+  }
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+  /* disable paralax on safari */
+  .plain-img,
+  .crazy-bg-img {
+    display: none;
+  }
+  .crazy-img {
+    background-image: url("../img/derek-lopez-crazy-small.png");
+  }
+}
+
+@supports not (-webkit-overflow-scrolling: touch) {
+  /* disable paralax on safari */
+  .plain-img,
+  .crazy-img,
+  .crazy-bg-img,
+  .family-img {
+    background-attachment: fixed;
+  }
+}
+
+.plain-img,
+.crazy-img,
+.crazy-bg-img,
+.family-img {
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/*for the different sections of the main page*/
+
+.dl-sideline {
+  background-color: #222;
+}
+
+.row:nth-child(odd) .dl-sideline {
+  background-color: #111;
+}

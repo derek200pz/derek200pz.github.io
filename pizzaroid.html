@@ -159,5 +159,8 @@
         controls.space = false;
       }
     });
+    addEventListener("touchmove", (event) => {
+      console.log(event.touches[0].pageX);
+    });
   </script>
 </html>
