@@ -43,12 +43,14 @@
       pizzaSprite,
       CHSFRICTION,
       steeringWheel,
+      distanceBetween,
+      vectorToAngle,
     } from "./js/pizzaroid-functions.js";
 
     populateAsterooms(10);
     function mainLoop() {
       //change rotation and velocity of the pizza depending on controls
-      applyControls(pizzaSprite);
+      applyControls();
 
       //apply friction to the pizza and exhaust particles
       applyFriction(pizzaSprite, FRICTION);
@@ -113,6 +115,8 @@
 
       //reposition the sprite to the updated position
       updateDomPosition(pizzaSprite);
+      updateDomPosition(steeringWheel);
+
       for (let i = 0; i < propelParticles.length; i++) {
         updateDomPosition(propelParticles[i]);
       }
@@ -159,8 +163,14 @@
         controls.space = false;
       }
     });
+    addEventListener("touchstart", (event) => {
+      controls.touchPoints = event.touches;
+    });
     addEventListener("touchmove", (event) => {
-      console.log(event.touches[0].pageX);
+      controls.touchPoints = event.touches;
+    });
+    addEventListener("touchend", (event) => {
+      controls.touchPoints = event.touches;
     });
   </script>
 </html>

@@ -15,9 +15,17 @@ export const asterooms = [];
 export const screenText = [];
 
 export const pizzaSprite = createPizza();
-export const steeringWheel = createSteeringWheel()
+export const steeringWheel = createSteeringWheel();
+export const zoomButton = createZoomButton();
+export const shootButton = createShootButton();
 
-export const controls = { a: false, d: false, w: false, space: false };
+export const controls = {
+  a: false,
+  d: false,
+  w: false,
+  space: false,
+  touchPoints: [],
+};
 
 function createPizza() {
   const pza = document.createElement("img");
@@ -63,19 +71,62 @@ export function displayText(text) {
   txt.style.top = (viewHeight - h) * 0.5;
 }
 
-export function applyControls(sprite) {
+export function applyControls() {
+  if (controls.touchPoints.length > 0) {
+    for (let x = 0; x < controls.touchPoints.length; x++) {
+      if (
+        nearSteeringWheel(
+          controls.touchPoints[x].pageX,
+          controls.touchPoints[x].pageY
+        )
+      ) {
+        turnSteeringWheel(controls.touchPoints[x]);
+      } else if (
+        nearButton(
+          controls.touchPoints[x].pageX,
+          controls.touchPoints[x].pageY,
+          shootButton
+        )
+      ) {
+        spawnBullet();
+      } else if (
+        nearButton(
+          controls.touchPoints[x].pageX,
+          controls.touchPoints[x].pageY,
+          zoomButton
+        )
+      ) {
+        acceleratePizza();
+      }
+      pizzaSprite.rot = steeringWheel.rot;
+    }
+  }
   if (controls.a) {
-    sprite.rot -= 0.15;
+    pizzaSprite.rot -= 0.15;
   }
   if (controls.d) {
-    sprite.rot += 0.15;
+    pizzaSprite.rot += 0.15;
   }
   if (controls.w) {
-    sprite.delX += Math.sin(sprite.rot) * 0.1;
-    sprite.delY -= Math.cos(sprite.rot) * 0.1;
-    spawnPropelParticle();
+    acceleratePizza();
   }
   if (controls.space) {
+  }
+}
+
+function acceleratePizza() {
+  pizzaSprite.delX += Math.sin(pizzaSprite.rot) * 0.1;
+  pizzaSprite.delY -= Math.cos(pizzaSprite.rot) * 0.1;
+  spawnPropelParticle();
+}
+
+function turnSteeringWheel(touch) {
+  if (nearSteeringWheel(touch.pageX, touch.pageY)) {
+    const rotation = vectorToAngle(
+      touch.pageX - steeringWheel.x,
+      touch.pageY - steeringWheel.y
+    );
+    steeringWheel.rot = rotation;
   }
 }
 
@@ -90,6 +141,27 @@ export function spritesTouching(sprite1, sprite2) {
   } else {
     return false;
   }
+}
+
+export function distanceBetween(x1, y1, x2, y2) {
+  return Math.sqrt((x1 - x2) ^ (2 + (y1 - y2)) ^ 2);
+}
+
+function nearSteeringWheel(x, y) {
+  const steeringBoxSize = 300;
+  return (
+    Math.abs(x - steeringWheel.x) < steeringBoxSize &&
+    Math.abs(y - steeringWheel.y) < steeringBoxSize
+  );
+}
+
+function nearButton(x, y, buttonSprite) {
+  const buttonBoxWidth = 130;
+  const buttonBoxHeight = 40;
+  return (
+    Math.abs(x - buttonSprite.x) < buttonBoxWidth &&
+    Math.abs(y - buttonSprite.y) < buttonBoxHeight
+  );
 }
 
 export function applyFriction(sprite, friction) {
@@ -199,21 +271,61 @@ export function spawnBullet() {
 function createSteeringWheel() {
   const stwh = document.createElement("img");
   stwh.src = "img/steering_wheel.svg";
-  stwh.alt = "bullet";
+  stwh.alt = "steering wheel";
   const wheel = {
     dom: stwh,
     w: 100,
     h: 100,
     rot: pizzaSprite.rot,
     delRot: 0,
-    x: 150,
+    x: 100,
     delX: 0,
-    y: viewHeight - 150,
+    y: viewHeight - 100,
     delY: 0,
   };
   updateDomPosition(wheel);
   document.body.appendChild(stwh);
   return wheel;
+}
+
+function createZoomButton() {
+  const zmbn = document.createElement("img");
+  zmbn.src = "img/zoom_button.svg";
+  zmbn.alt = "Zoom Button";
+  const zoomButton = {
+    dom: zmbn,
+    w: 130,
+    h: 130,
+    rot: pizzaSprite.rot,
+    delRot: 0,
+    x: viewWidth - 100,
+    delX: 0,
+    y: viewHeight - 70,
+    delY: 0,
+  };
+  updateDomPosition(zoomButton);
+  document.body.appendChild(zmbn);
+  return zoomButton;
+}
+
+function createShootButton() {
+  const stbn = document.createElement("img");
+  stbn.src = "img/shoot_button.svg";
+  stbn.alt = "Shoot Button";
+  const shootButton = {
+    dom: stbn,
+    w: 130,
+    h: 130,
+    rot: pizzaSprite.rot,
+    delRot: 0,
+    x: viewWidth - 100,
+    delX: 0,
+    y: viewHeight - 130,
+    delY: 0,
+  };
+  updateDomPosition(shootButton);
+  document.body.appendChild(stbn);
+  return shootButton;
 }
 
 export function spawnChildAsterooms(parentAsteroom) {
