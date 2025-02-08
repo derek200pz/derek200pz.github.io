@@ -164,12 +164,15 @@
       }
     });
     addEventListener("touchstart", (event) => {
+      event.preventDefault();
       controls.touchPoints = event.touches;
     });
     addEventListener("touchmove", (event) => {
+      event.preventDefault();
       controls.touchPoints = event.touches;
     });
     addEventListener("touchend", (event) => {
+      event.preventDefault();
       controls.touchPoints = event.touches;
     });
   </script>
