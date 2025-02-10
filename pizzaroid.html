@@ -178,5 +178,8 @@
     addEventListener("touchend", (event) => {
       controls.touchPoints = event.touches;
     });
+    addEventListener("gesturestart", (event) => {
+      event.preventDefault();
+    });
   </script>
 </html>
