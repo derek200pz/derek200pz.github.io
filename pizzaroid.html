@@ -6,6 +6,7 @@
         padding: 0;
         margin: 0;
         background: #000;
+        overflow: hidden;
       }
 
       img,
@@ -164,15 +165,12 @@
       }
     });
     addEventListener("touchstart", (event) => {
-      event.preventDefault();
       controls.touchPoints = event.touches;
     });
     addEventListener("touchmove", (event) => {
-      event.preventDefault();
       controls.touchPoints = event.touches;
     });
     addEventListener("touchend", (event) => {
-      event.preventDefault();
       controls.touchPoints = event.touches;
     });
   </script>
